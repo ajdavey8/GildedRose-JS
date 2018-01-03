@@ -1,9 +1,9 @@
 describe("Gilded Rose", function() {
 
   it("should return the name of the item", function() {
-    const gildedRose = new Shop([ new Item("foo", 0, 0) ]);
+    const gildedRose = new Shop([ new Item("foo", 0, 0), new Item("bar", 0, 0) ]);
     const items = gildedRose.updateQuality();
-    expect(items[0].name).toEqual("foo");
+    expect(items[1].name).toEqual("bar");
   });
 
   it("should reduce the quality by double as is past sellIn date", function() {
@@ -18,9 +18,15 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toEqual(0);
   });
 
-  it("should increase the quality of Aged Brie", function() {
+  it("should increase the quality of Aged Brie ", function() {
     const gildedRose = new Shop([ new Item("Aged Brie", 0, 4) ]);
     const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(6);
+  });
+
+  it("should increase the quality of Aged Brie 2", function() {
+    const gildedRose = new Shop([ new Item("Aged Brie", 0, 4) ]);
+    const items = gildedRose.updateQuality2();
     expect(items[0].quality).toEqual(6);
   });
 

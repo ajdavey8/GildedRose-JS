@@ -59,4 +59,30 @@ class Shop {
 
     return this.items;
   }
+
+  updateQuality2() {
+    for (var i = 0; i < this.items.length; i++) {
+    if (this._isAgedBrie(i)) {
+      this._getAgedBrie(i)
+    } else {
+        console.log("Needs fixing")
+      }
+    }
+  return this.items;
+  }
+
+  _isAgedBrie(i) {
+      return this.items[i].name === 'Aged Brie'
+  }
+  _getAgedBrie(i) {
+    if (this.items[i].sellIn <= 0 && this.items[i].quality < 50) {
+      this.items[i].quality = this.items[i].quality + 2
+    } else if (this.items[i].sellIn > 0 && this.items[i].quality < 50)
+      this.items[i].quality = this.items[i].quality + 1
+      this._reduceSellInByStandard(i)
+  }
+
+  _reduceSellInByStandard(i) {
+  this.items[i].sellIn = this.items[i].sellIn - 1
+  }
 }
